@@ -40,11 +40,23 @@ fn main() {
     // }
     persons[0].hoge();
     let mut hoge = &mut persons[0];
-    hoge.name = "12345".to_string();
-    println!("{}", hoge.name);
-    println!("{}", persons[0].name);
-    hoge = &mut persons[0];
-    println!("{}", hoge.name);
+    {
+        let mut fuga = &mut hoge;
+//        let mut fuga = &mut persons[0];
+        {
+            let foo = &mut fuga;
+//            let mut foo = &mut persons[0];
+            foo.name = "foo".to_string();
+        }
+        fuga.name = "fuga".to_string();
+    }
+    hoge.name = "hoge".to_string();
+//    hoge.name = "hoge".to_string();
+//    hoge.name = "12345".to_string();
+//    println!("{}", hoge.name);
+//    println!("{}", persons[0].name);
+//    hoge = &mut persons[0];
+//    println!("{}", hoge.name);
     persons[0].eat();
 
     let handles: Vec<_> = persons.into_iter().map(|p| {
