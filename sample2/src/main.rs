@@ -40,17 +40,11 @@ fn main() {
     // }
     persons[0].hoge();
     let mut hoge = &mut persons[0];
-    {
-        let mut fuga = &mut hoge;
-//        let mut fuga = &mut persons[0];
-        {
-            let foo = &mut fuga;
-//            let mut foo = &mut persons[0];
-            foo.name = "foo".to_string();
-        }
-        fuga.name = "fuga".to_string();
-    }
+    let mut fuga = &mut hoge;
+    let foo = &mut fuga;
     hoge.name = "hoge".to_string();
+    fuga.name = "fuga".to_string();
+//    foo.name = "foo".to_string();
 //    hoge.name = "hoge".to_string();
 //    hoge.name = "12345".to_string();
 //    println!("{}", hoge.name);
